@@ -1,0 +1,90 @@
+/* Full-screen container to center the grid */
+.sudoku-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-color: #f7f7f7; /* Light background for contrast */
+}
+
+/* Sudoku grid setup with CSS Grid */
+.sudoku-grid {
+  display: grid;
+  grid-template-columns: repeat(9, 50px); /* 9 equal columns */
+  grid-template-rows: repeat(9, 50px);   /* 9 equal rows */
+  gap: 1px;
+  border: 3px solid black; /* Outer border for the entire grid */
+  background-color: white; /* Background color for the grid */
+}
+
+/* Style for individual cells */
+.sudoku-cell {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  border: 1px solid #0c0808; /* Light border for individual cells */
+  box-sizing: border-box;
+  background-color: #fff;
+}
+
+/* Bold horizontal borders for 3x3 row sections */
+.sudoku-grid .sudoku-cell:nth-child(-n+9) {
+  border-top: 4px solid rgb(240, 226, 226); /* Top border for the first row */
+}
+
+.sudoku-grid .sudoku-cell:nth-child(n+19):nth-child(-n+27),
+.sudoku-grid .sudoku-cell:nth-child(n+46):nth-child(-n+54) {
+  border-bottom: 4px solid rgb(14, 3, 3); /* Bottom border for every third row */
+}
+
+/* Bold vertical borders for 3x3 column sections */
+.sudoku-grid .sudoku-cell:nth-child(3n+1) {
+  border-left: 4px solid rgb(12, 12, 12); /* Left border for every third column */
+}
+
+.sudoku-grid .sudoku-cell:nth-child(3n) {
+  border-right: px solid black; /* Right border for every third column */
+}
+
+/* Highlight selected cell */
+.sudoku-cell:focus {
+  background-color: #4d9292; /* Light blue background when selected */
+  outline: none; /* Remove default outline */
+  border: 2px solid red; /* Bold red border for selected cell */
+}
+
+/* Add hover effect for better interactivity */
+.sudoku-cell:hover {
+  background-color: #cfbfbf; /* Slight background change on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .sudoku-grid {
+    grid-template-columns: repeat(9, 30px);
+    grid-template-rows: repeat(9, 30px);
+  }
+
+  .sudoku-cell {
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+  }
+}
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+

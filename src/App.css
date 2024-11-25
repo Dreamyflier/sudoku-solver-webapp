@@ -1,38 +1,58 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Full-screen container to center the grid */
+.sudoku-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 }
 
-.App-link {
-  color: #61dafb;
+/* Sudoku grid setup with CSS Grid */
+.sudoku-grid {
+  display: grid;
+  grid-template-columns: repeat(9, 50px); /* 9 columns */
+  grid-template-rows: repeat(9, 50px);    /* 9 rows */
+  gap: 1px;
+  border: 3px solid black; /* Outer border of the entire grid */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Style for individual cells */
+.sudoku-cell {
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  font-size: 20px;
+  border: 1px solid #ddd; /* Light border for individual cells */
+  box-sizing: border-box;
+}
+
+/* Bold borders for the 3x3 subgrids */
+.sudoku-grid .sudoku-cell:nth-child(3n+1) {
+  border-left: 3px solid black; /* Bold left border for 3x3 separation */
+}
+
+.sudoku-grid .sudoku-cell:nth-child(3n) {
+  border-right: 3px solid black; /* Bold right border for 3x3 separation */
+}
+
+.sudoku-grid .sudoku-cell:nth-child(n + 28):nth-child(-n + 30),
+.sudoku-grid .sudoku-cell:nth-child(n + 57):nth-child(-n + 59) {
+  border-bottom: 3px solid black; /* Bold bottom border for 3x3 separation */
+}
+
+.sudoku-grid .sudoku-cell:nth-last-child(-n+9) {
+  border-bottom: 3px solid black; /* Bottom border of the last row */
+}
+
+/* Highlight selected cell */
+.sudoku-cell.selected {
+  background-color: yellow;
+  border: 2px solid red;
+}
+
+/* Highlight the entire 3x3 subgrid of the selected cell */
+.sudoku-cell.selected:nth-child(3n+1),
+.sudoku-cell.selected:nth-child(3n+2),
+.sudoku-cell.selected:nth-child(3n+3) {
+  background-color: rgba(255, 255, 0, 0.3); /* Light background color for subgrid */
 }
